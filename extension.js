@@ -10,6 +10,7 @@ import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 const PING_DESTINATION = 'ping-destination';
 const REFRESH_INTERVAL = 'refresh-interval';
 const SLOW_THRESHOLD_MS = 'slow-threshold-ms';
+const RED_THRESHOLD_MS = 'red-threshold-ms';
 
 export default class IconPingExtension extends Extension {
     enable() {
@@ -20,6 +21,7 @@ export default class IconPingExtension extends Extension {
             this._settings.connect(`changed::${PING_DESTINATION}`, () => this._runPing()),
             this._settings.connect(`changed::${REFRESH_INTERVAL}`, () => this._scheduleNextPing()),
             this._settings.connect(`changed::${SLOW_THRESHOLD_MS}`, () => this._runPing()),
+            this._settings.connect(`changed::${RED_THRESHOLD_MS}`, () => this._runPing()),
         ];
 
         this._indicator = new PanelMenu.Button(0.0, 'IconPing Modern');
@@ -111,7 +113,11 @@ export default class IconPingExtension extends Extension {
                     if (proc.get_successful()) {
                         const match = stdout.match(/time[=<]([\d.]+)\s*ms/i);
                         const latency = match ? Number.parseFloat(match[1]) : null;
-                        if (latency !== null && latency >= this._settings.get_int(SLOW_THRESHOLD_MS)) {
+                        const redThreshold = this._settings.get_int(RED_THRESHOLD_MS);
+                        const slowThreshold = this._settings.get_int(SLOW_THRESHOLD_MS);
+                        if (latency !== null && latency >= redThreshold) {
+                            this._setStatus('critical', `${destination}: ${latency.toFixed(1)} ms`);
+                        } else if (latency !== null && latency >= slowThreshold) {
                             this._setStatus('slow', `${destination}: ${latency.toFixed(1)} ms`);
                         } else {
                             this._setStatus('ok', latency === null
@@ -151,6 +157,7 @@ export default class IconPingExtension extends Extension {
             checking: 'icon.png',
             ok: 'iconok.png',
             slow: 'iconslow.png',
+            critical: 'iconko.png',
             down: 'iconko.png',
             invalid: 'iconko.png',
             paused: 'icon.png',
