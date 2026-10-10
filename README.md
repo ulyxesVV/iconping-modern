@@ -2,12 +2,12 @@
 
 Eine modernisierte Fork der GNOME-Shell-Erweiterung **IconPing** von Simone Bisi, angepasst für aktuelle GNOME-Shell-Versionen. Die Erweiterung zeigt den Netzwerkstatus mit den ursprünglichen farbigen Weltkugel-Symbolen des Projekts an.
 
-- Grün: Ziel antwortet in weniger als 300 ms
-- Gelb: Ziel antwortet mit mindestens 300 ms
+- Grün: Ziel antwortet unterhalb der gewählten Schwelle
+- Gelb: Ziel erreicht die gewählte Schwelle (Standard: 300 ms)
 - Rot: Ziel antwortet nicht oder die Eingabe ist ungültig
 - Grau: Prüfung läuft, wurde pausiert oder hat noch kein Ergebnis
 
-Im Panelmenü lässt sich die Überwachung pausieren oder fortsetzen. Die Einstellungen erlauben ein Ping-Ziel und ein Prüfintervall. Der Ping-Prozess wird mit Argumenten gestartet, ohne Shell-Auswertung; Ziele werden auf Hostnamen und IP-Adressen begrenzt und jeder Ping hat ein Zeitlimit.
+Im Panelmenü lässt sich die Überwachung pausieren oder fortsetzen. Die Einstellungen erlauben ein Ping-Ziel, ein Prüfintervall und eine gelbe Warnschwelle von 1 bis 2000 ms. Der Ping-Prozess wird mit Argumenten gestartet, ohne Shell-Auswertung; Ziele werden auf Hostnamen und IP-Adressen begrenzt und jeder Ping hat ein Zeitlimit.
 
 Lokal getestet mit GNOME Shell 48.7. Die Metadaten führen GNOME Shell 45–51 als unterstützte Hauptversionen.
 
