@@ -35,6 +35,27 @@ export default class IconPingPreferences extends ExtensionPreferences {
         intervalRow.set_activatable_widget(intervalSpin);
         group.add(intervalRow);
 
+        const thresholdRow = new Adw.ActionRow({title: 'Gelb ab'});
+        thresholdRow.subtitle = 'Latenz in Millisekunden (Standard: 300 ms)';
+        const thresholdAdjustment = new Gtk.Adjustment({
+            lower: 1,
+            upper: 2000,
+            step_increment: 1,
+            page_increment: 50,
+            value: settings.get_int('slow-threshold-ms'),
+        });
+        const thresholdSpin = new Gtk.SpinButton({
+            adjustment: thresholdAdjustment,
+            numeric: true,
+            valign: Gtk.Align.CENTER,
+        });
+        thresholdSpin.connect('value-changed', () => {
+            settings.set_int('slow-threshold-ms', thresholdSpin.get_value_as_int());
+        });
+        thresholdRow.add_suffix(thresholdSpin);
+        thresholdRow.set_activatable_widget(thresholdSpin);
+        group.add(thresholdRow);
+
         page.add(group);
         window.add(page);
     }
