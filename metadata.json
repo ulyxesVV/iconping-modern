@@ -3,6 +3,6 @@
   "name": "IconPing Modern",
   "description": "Modernisierte Fork der IconPing-Erweiterung von Simone Bisi, angepasst für aktuelle GNOME-Shell-Versionen.",
   "settings-schema": "org.gnome.shell.extensions.iconpingmodern",
-  "shell-version": ["45", "46", "47", "48", "49", "50", "51"],
+  "shell-version": ["48"],
   "url": "https://github.com/ulyxesVV/iconping-modern"
 }
