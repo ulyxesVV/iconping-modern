@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.iconpingmodern" path="/org/gnome/shell/extensions/iconpingmodern/">
+    <key name="ping-destination" type="s">
+      <default>'8.8.8.8'</default>
+      <summary>Ping destination</summary>
+      <description>Hostname or IP address checked by IconPing.</description>
+    </key>
+    <key name="refresh-interval" type="i">
+      <range min="1" max="3600"/>
+      <default>5</default>
+      <summary>Refresh interval</summary>
+      <description>Seconds between ping checks.</description>
+    </key>
+  </schema>
+</schemalist>

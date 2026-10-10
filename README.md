@@ -1,24 +1,24 @@
 # IconPing Modern
 
-A modernized fork of Simone Bisi's IconPing GNOME Shell extension, adapted for current GNOME Shell versions. The extension uses the original colored globe status icons.
+Eine modernisierte Fork der GNOME-Shell-Erweiterung **IconPing** von Simone Bisi, angepasst für aktuelle GNOME-Shell-Versionen. Die Erweiterung zeigt den Netzwerkstatus mit den ursprünglichen farbigen Weltkugel-Symbolen des Projekts an.
 
-- Green: destination replies in less than 300 ms
-- Yellow: destination replies in 300 ms or more
-- Red: destination does not reply or the input is invalid
-- Gray: check is running, paused, or has no result yet
+- Grün: Ziel antwortet in weniger als 300 ms
+- Gelb: Ziel antwortet mit mindestens 300 ms
+- Rot: Ziel antwortet nicht oder die Eingabe ist ungültig
+- Grau: Prüfung läuft, wurde pausiert oder hat noch kein Ergebnis
 
-Use the panel menu to pause or resume monitoring. Preferences allow setting the ping destination and check interval. The ping process is launched as an argument list without shell evaluation; destinations are restricted to hostnames and IP addresses, and each ping has a timeout.
+Im Panelmenü lässt sich die Überwachung pausieren oder fortsetzen. Die Einstellungen erlauben ein Ping-Ziel und ein Prüfintervall. Der Ping-Prozess wird mit Argumenten gestartet, ohne Shell-Auswertung; Ziele werden auf Hostnamen und IP-Adressen begrenzt und jeder Ping hat ein Zeitlimit.
 
-Tested locally with GNOME Shell 48.7. Metadata lists GNOME Shell 45–51 as supported major versions.
+Lokal getestet mit GNOME Shell 48.7. Die Metadaten führen GNOME Shell 45–51 als unterstützte Hauptversionen.
 
-## Build
+## Paket bauen
 
 ```sh
 ./build.sh
 ```
 
-The script creates `iconping-modern@ulyxesvv.github.io.shell-extension.zip`. It uses Python 3 and compiles the GSettings schema when `glib-compile-schemas` is installed. Install locally with `gnome-extensions install` or submit the ZIP for review at [extensions.gnome.org](https://extensions.gnome.org/).
+Das Skript erzeugt `iconping-modern@ulyxesvv.github.io.shell-extension.zip`. Es benötigt Python 3; `glib-compile-schemas` wird verwendet, wenn installiert ist. Das Paket lässt sich lokal mit `gnome-extensions install` installieren und zur Prüfung bei [extensions.gnome.org](https://extensions.gnome.org/) einreichen.
 
-## Credits and license
+## Herkunft und Lizenz
 
-The JavaScript port and GNOME 45+ adaptation build on Simone Bisi's original extension. The status images are the original PNGs from [SimonItaly/iconping_gnome](https://github.com/SimonItaly/iconping_gnome). Source is licensed under GPL-3.0-or-later; see `COPYING`.
+Der JavaScript-Port und die GNOME-45+-Anpassungen bauen auf der ursprünglichen Erweiterung von Simone Bisi auf. Die Statusgrafiken sind die Original-PNGs aus [SimonItaly/iconping_gnome](https://github.com/SimonItaly/iconping_gnome). Der Quellcode steht unter GPL-3.0-or-later; der Lizenztext ist in `COPYING` enthalten.
