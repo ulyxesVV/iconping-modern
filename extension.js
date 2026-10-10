@@ -9,7 +9,7 @@ import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 const PING_DESTINATION = 'ping-destination';
 const REFRESH_INTERVAL = 'refresh-interval';
-const SLOW_THRESHOLD_MS = 300;
+const SLOW_THRESHOLD_MS = 'slow-threshold-ms';
 
 export default class IconPingExtension extends Extension {
     enable() {
@@ -19,6 +19,7 @@ export default class IconPingExtension extends Extension {
         this._settingsSignals = [
             this._settings.connect(`changed::${PING_DESTINATION}`, () => this._runPing()),
             this._settings.connect(`changed::${REFRESH_INTERVAL}`, () => this._scheduleNextPing()),
+            this._settings.connect(`changed::${SLOW_THRESHOLD_MS}`, () => this._runPing()),
         ];
 
         this._indicator = new PanelMenu.Button(0.0, 'IconPing Modern');
@@ -110,7 +111,7 @@ export default class IconPingExtension extends Extension {
                     if (proc.get_successful()) {
                         const match = stdout.match(/time[=<]([\d.]+)\s*ms/i);
                         const latency = match ? Number.parseFloat(match[1]) : null;
-                        if (latency !== null && latency >= SLOW_THRESHOLD_MS) {
+                        if (latency !== null && latency >= this._settings.get_int(SLOW_THRESHOLD_MS)) {
                             this._setStatus('slow', `${destination}: ${latency.toFixed(1)} ms`);
                         } else {
                             this._setStatus('ok', latency === null
