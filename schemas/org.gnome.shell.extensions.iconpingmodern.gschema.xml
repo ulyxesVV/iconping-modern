@@ -12,5 +12,11 @@
       <summary>Refresh interval</summary>
       <description>Seconds between ping checks.</description>
     </key>
+    <key name="slow-threshold-ms" type="i">
+      <range min="1" max="2000"/>
+      <default>300</default>
+      <summary>Yellow warning threshold</summary>
+      <description>Latency in milliseconds at which the icon turns yellow.</description>
+    </key>
   </schema>
 </schemalist>
