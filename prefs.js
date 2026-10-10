@@ -56,6 +56,27 @@ export default class IconPingPreferences extends ExtensionPreferences {
         thresholdRow.set_activatable_widget(thresholdSpin);
         group.add(thresholdRow);
 
+        const redThresholdRow = new Adw.ActionRow({title: 'Rot ab'});
+        redThresholdRow.subtitle = 'Latenz in Millisekunden; Rot hat Vorrang (Standard: 2000 ms)';
+        const redThresholdAdjustment = new Gtk.Adjustment({
+            lower: 1,
+            upper: 2000,
+            step_increment: 1,
+            page_increment: 50,
+            value: settings.get_int('red-threshold-ms'),
+        });
+        const redThresholdSpin = new Gtk.SpinButton({
+            adjustment: redThresholdAdjustment,
+            numeric: true,
+            valign: Gtk.Align.CENTER,
+        });
+        redThresholdSpin.connect('value-changed', () => {
+            settings.set_int('red-threshold-ms', redThresholdSpin.get_value_as_int());
+        });
+        redThresholdRow.add_suffix(redThresholdSpin);
+        redThresholdRow.set_activatable_widget(redThresholdSpin);
+        group.add(redThresholdRow);
+
         page.add(group);
         window.add(page);
     }
