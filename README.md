@@ -9,7 +9,7 @@ Eine modernisierte Fork der GNOME-Shell-Erweiterung **IconPing** von Simone Bisi
 
 Im Panelmenü lässt sich die Überwachung pausieren oder fortsetzen. Die Einstellungen erlauben ein Ping-Ziel, ein Prüfintervall sowie gelbe und rote Warnschwellen von 1 bis 2000 ms. Rot wird vor Gelb ausgewertet. Der Ping-Prozess wird mit Argumenten gestartet, ohne Shell-Auswertung; Ziele werden auf Hostnamen und IP-Adressen begrenzt und jeder Ping hat ein Zeitlimit.
 
-Lokal getestet mit GNOME Shell 48.7. Die Metadaten führen GNOME Shell 45–51 als unterstützte Hauptversionen.
+Lokal getestet mit GNOME Shell 48.7. Das Paket weist deshalb vorerst GNOME Shell 48 als unterstützte Hauptversion aus.
 
 ## Paket bauen
 
